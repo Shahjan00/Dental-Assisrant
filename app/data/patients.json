@@ -1,0 +1,50 @@
+[
+  {
+    "id": "P001",
+    "name": "Priya Sharma",
+    "age": 28,
+    "gender": "F",
+    "phone": "+91-98200-12345",
+    "email": "priya.sharma@example.com"
+  },
+  {
+    "id": "P002",
+    "name": "Priya Verma",
+    "age": 35,
+    "gender": "F",
+    "phone": "+91-98200-67890",
+    "email": "priya.verma@example.com"
+  },
+  {
+    "id": "P003",
+    "name": "Rahul Mehta",
+    "age": 42,
+    "gender": "M",
+    "phone": "+91-98200-11111",
+    "email": "rahul.mehta@example.com"
+  },
+  {
+    "id": "P004",
+    "name": "Anjali Gupta",
+    "age": 31,
+    "gender": "F",
+    "phone": "+91-98200-22222",
+    "email": "anjali.gupta@example.com"
+  },
+  {
+    "id": "P005",
+    "name": "Vikram Singh",
+    "age": 55,
+    "gender": "M",
+    "phone": "+91-98200-33333",
+    "email": "vikram.singh@example.com"
+  },
+  {
+    "id": "P006",
+    "name": "Sneha Reddy",
+    "age": 24,
+    "gender": "F",
+    "phone": "+91-98200-44444",
+    "email": "sneha.reddy@example.com"
+  }
+]

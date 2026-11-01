@@ -1,0 +1,163 @@
+[
+  {
+    "id": "R001",
+    "patient_id": "P001",
+    "type": "OPG",
+    "date": "2026-10-15",
+    "dentist": "Dr. Kavitha Rao",
+    "findings": [
+      "Lower right third molar (48) is horizontally impacted against distal root of 47",
+      "Mild horizontal bone loss in lower anterior region",
+      "No periapical pathology noted"
+    ],
+    "impression": "Horizontally impacted 48; advise surgical extraction evaluation",
+    "status": "final"
+  },
+  {
+    "id": "R002",
+    "patient_id": "P001",
+    "type": "IOPA",
+    "date": "2026-10-15",
+    "dentist": "Dr. Kavitha Rao",
+    "findings": [
+      "Periapical radiolucency (4mm) associated with distal root of 47",
+      "Loss of lamina dura around distal root apex"
+    ],
+    "impression": "Periapical lesion on 47, likely endodontic origin; RCT advised",
+    "status": "final"
+  },
+  {
+    "id": "R003",
+    "patient_id": "P002",
+    "type": "OPG",
+    "date": "2026-09-20",
+    "dentist": "Dr. Arjun Nair",
+    "findings": [
+      "Generalized mild calculus deposits",
+      "Upper right third molar (18) vertically impacted, asymptomatic",
+      "No caries detected on panoramic view"
+    ],
+    "impression": "Routine findings; 18 monitoring, no intervention needed",
+    "status": "final"
+  },
+  {
+    "id": "R004",
+    "patient_id": "P002",
+    "type": "CBCT",
+    "date": "2026-09-22",
+    "dentist": "Dr. Arjun Nair",
+    "findings": [
+      "Upper right third molar (18) in close proximity (1.2mm) to maxillary sinus floor",
+      "Adequate bone volume in posterior maxilla"
+    ],
+    "impression": "18 near sinus; CBCT confirms safe extraction corridor if needed",
+    "status": "final"
+  },
+  {
+    "id": "R005",
+    "patient_id": "P003",
+    "type": "OPG",
+    "date": "2026-10-01",
+    "dentist": "Dr. Meera Iyer",
+    "findings": [
+      "Distal caries on upper left first molar (26) approaching pulp",
+      "Missing lower left first molar (36), extracted 2019",
+      "Moderate attrition on posterior teeth"
+    ],
+    "impression": "Deep caries 26; pulp vitality testing and likely RCT",
+    "status": "final"
+  },
+  {
+    "id": "R006",
+    "patient_id": "P003",
+    "type": "IOPA",
+    "date": "2026-10-01",
+    "dentist": "Dr. Meera Iyer",
+    "findings": [
+      "Radiolucency in distal pulp horn of 26, pulp exposure likely",
+      "Normal periapical structures"
+    ],
+    "impression": "Confirm pulp exposure clinically; plan RCT for 26",
+    "status": "final"
+  },
+  {
+    "id": "R007",
+    "patient_id": "P004",
+    "type": "OPG",
+    "date": "2026-08-11",
+    "dentist": "Dr. Kavitha Rao",
+    "findings": [
+      "Orthodontic brackets present on upper and lower arches",
+      "Lower left second premolar (35) rotated 25 degrees",
+      "Root resorption not evident"
+    ],
+    "impression": "Mid-orthodontic review; continue current mechanics",
+    "status": "final"
+  },
+  {
+    "id": "R008",
+    "patient_id": "P004",
+    "type": "IOPA",
+    "date": "2026-08-11",
+    "dentist": "Dr. Kavitha Rao",
+    "findings": [
+      "35 shows intact root structure, rotation confirmed",
+      "Adjacent teeth unremarkable"
+    ],
+    "impression": "No adverse findings; proceed with alignment",
+    "status": "final"
+  },
+  {
+    "id": "R009",
+    "patient_id": "P005",
+    "type": "OPG",
+    "date": "2026-10-20",
+    "dentist": "Dr. Arjun Nair",
+    "findings": [
+      "Generalized moderate to severe horizontal bone loss",
+      "Lower anterior teeth (31, 41) show Grade II mobility clinically correlated",
+      "Multiple missing posterior teeth"
+    ],
+    "impression": "Generalized chronic periodontitis; full periodontal charting and treatment planning",
+    "status": "final"
+  },
+  {
+    "id": "R010",
+    "patient_id": "P005",
+    "type": "CBCT",
+    "date": "2026-10-22",
+    "dentist": "Dr. Arjun Nair",
+    "findings": [
+      "Severe buccal bone dehiscence on 31 and 41",
+      "Inadequate bone for implant in 36 region without grafting"
+    ],
+    "impression": "Advanced bone loss confirmed; discuss grafting vs removable options",
+    "status": "draft"
+  },
+  {
+    "id": "R011",
+    "patient_id": "P006",
+    "type": "OPG",
+    "date": "2026-10-25",
+    "dentist": "Dr. Meera Iyer",
+    "findings": [
+      "All third molars present and erupted in functional occlusion",
+      "Small occlusal caries on lower right second molar (47)",
+      "No bone loss"
+    ],
+    "impression": "Incipient caries 47; preventive resin restoration advised",
+    "status": "final"
+  },
+  {
+    "id": "R012",
+    "patient_id": "P006",
+    "type": "IOPA",
+    "date": "2026-10-25",
+    "dentist": "Dr. Meera Iyer",
+    "findings": [
+      "Enamel-only radiolucency on occlusal of 47, dentin not involved"
+    ],
+    "impression": "Enamel caries 47; monitor or minimal intervention",
+    "status": "final"
+  }
+]

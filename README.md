@@ -1,53 +1,35 @@
 # Dental Assistant
 
-Voice-first dental assistant PoC. Takes typed or spoken requests like
-"Open Priya's latest OPG report" and clinical dictations, returns
-structured data. Built for the VI-SCAN AI Engineer take-home.
+Voice-first dental assistant PoC for VI-SCAN Diagnostics.
 
-## Setup
+## Demo
 
-```bash
-pip install -r requirements.txt
+Open the app in your browser — a simple demo page at `/` with three sections:
+1. **Find a report** — type "Open Priya Sharma's latest OPG report"
+2. **Dictation** — paste clinical dictation, get structured JSON draft
+3. **Follow-up chat** — ask questions about the loaded report (uses the session from step 1)
 
-# optional: for real LLM calls
-cp .env.example .env
-# put your Gemini key in .env
+Or use the API directly — see `demo/api_examples.md`.
 
-uvicorn app.main:app --reload
-```
+## Features
 
-Without a Gemini key it runs on a built-in rule-based mock, so it works out of the box.
+- **Report retrieval** (`POST /api/retrieve`): natural language lookup with ambiguity handling
+- **Dictation** (`POST /api/dictate`): clinical text → structured JSON (findings, anatomical site, uncertainty notes)
+- **Follow-up chat** (`POST /api/chat`): session-aware Q&A grounded in the selected report — *bonus feature*
 
-## API
-
-- `POST /api/retrieve` - find a patient report
-  ```json
-  {"query": "Open Priya Sharma's latest OPG report"}
-  ```
-- `POST /api/dictate` - transcript to structured draft
-  ```json
-  {"transcript": "Lower right third molar (48) is horizontally impacted"}
-  ```
-- `POST /api/chat` - follow-up questions (needs session_id from /api/retrieve)
-  ```json
-  {"message": "Summarize her report", "session_id": "..."}
-  ```
-
-## Bonus feature: report-aware chatbot
-
-`POST /api/chat` answers grounded questions about the currently selected
-report (loaded via `/api/retrieve`). Every answer cites the evidence it
-used. See `demo/api_examples.md` step 4.
+All responses cite evidence and flag uncertainty. If the LLM call fails mid-request, the endpoint falls back to the local mock provider and marks `fallback_used: true`.
 
 ## Tests
 
 ```bash
+pip install -r requirements.txt
 pytest tests/ -v
 ```
 
-## Known limitations
+## Run
 
-- STT is mocked (typed input). The pipeline accepts a transcript string where audio would go.
-- Mock LLM handles common patterns; edge-case phrasing may miss. Gemini handles the rest.
-- Session memory is in-memory only, resets on restart.
-- All patient data is synthetic.
+```bash
+uvicorn app.main:app --reload
+```
+
+Then open http://localhost:8000 in your browser.

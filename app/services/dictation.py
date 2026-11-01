@@ -1,33 +1,19 @@
-"""Feature B: clinical dictation -> structured draft report. Never invents findings."""
-from typing import Dict, Any
-from app.llm.provider import LLMProvider
-
-
-def dictate(transcript: str, llm: LLMProvider) -> Dict[str, Any]:
+def dictate(transcript, llm):
     text = (transcript or "").strip()
     if not text:
-        return {
-            "transcript": "",
-            "findings": [],
-            "draft_report": "",
-            "uncertainty_notes": ["Empty transcript; nothing to document."],
-            "clinician_review_required": True,
-        }
+        return {"transcript": "", "findings": [], "draft_report": "",
+                "uncertainty_notes": ["Empty transcript."],
+                "clinician_review_required": True}
 
-    structured = llm.structure_dictation(text)
-    findings = structured.get("findings", [])
+    out = llm["dictation"](text)
 
-    lines = ["DRAFT CLINICAL REPORT (requires clinician review)", ""]
-    for i, f in enumerate(findings, 1):
-        site = f.get("anatomical_site") or "site not specified"
-        lines.append(f"{i}. [{site}] {f.get('observation','')}")
-        lines.append(f"   Confidence: {f.get('confidence','medium')}")
-    draft = "\n".join(lines)
+    lines = ["DRAFT REPORT (needs clinician review)", ""]
+    for i, f in enumerate(out.get("findings", []), 1):
+        site = f.get("anatomical_site") or "site unknown"
+        lines.append(f"{i}. [{site}] {f.get('observation', '')}")
 
-    return {
-        "transcript": text,
-        "findings": findings,
-        "draft_report": draft,
-        "uncertainty_notes": structured.get("uncertainty_notes", []),
-        "clinician_review_required": True,
-    }
+    return {"transcript": text,
+            "findings": out.get("findings", []),
+            "draft_report": "\n".join(lines),
+            "uncertainty_notes": out.get("uncertainty_notes", []),
+            "clinician_review_required": True}

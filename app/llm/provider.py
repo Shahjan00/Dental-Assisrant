@@ -1,20 +1,20 @@
-"""LLM provider interface. Implementations: Gemini (LangChain) and rule-based mock."""
-from abc import ABC, abstractmethod
-from typing import Dict, Any
+# pick gemini if key exists, else use mock
+import os
 
 
-class LLMProvider(ABC):
-    @abstractmethod
-    def extract_retrieval_intent(self, query: str) -> Dict[str, Any]:
-        """Parse a retrieval query into {patient_name, report_type}."""
-        ...
-
-    @abstractmethod
-    def structure_dictation(self, transcript: str) -> Dict[str, Any]:
-        """Convert a clinical transcript into structured findings JSON."""
-        ...
-
-    @abstractmethod
-    def answer_followup(self, message: str, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Answer a conversational follow-up given session context."""
-        ...
+def get_llm():
+    if os.environ.get("GEMINI_API_KEY"):
+        from app.llm.gemini_provider import gemini_intent, gemini_dictation, gemini_followup
+        return {
+            "intent": gemini_intent,
+            "dictation": gemini_dictation,
+            "followup": gemini_followup,
+            "name": "gemini",
+        }
+    from app.llm.mock_provider import mock_intent, mock_dictation, mock_followup
+    return {
+        "intent": mock_intent,
+        "dictation": mock_dictation,
+        "followup": mock_followup,
+        "name": "mock",
+    }

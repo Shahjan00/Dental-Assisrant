@@ -33,6 +33,12 @@ Without a Gemini key it runs on a built-in rule-based mock, so it works out of t
   {"message": "Summarize her report", "session_id": "..."}
   ```
 
+## Bonus feature: report-aware chatbot
+
+`POST /api/chat` answers grounded questions about the currently selected
+report (loaded via `/api/retrieve`). Every answer cites the evidence it
+used. See `demo/api_examples.md` step 4.
+
 ## Tests
 
 ```bash

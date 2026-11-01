@@ -39,6 +39,13 @@ User query/transcript
 - **Uncertainty is labeled.** Dictation output flags confidence per finding
   and always requires clinician review.
 
+## Bonus: report-aware chatbot
+
+The `/api/chat` endpoint is the bonus feature. It answers questions grounded
+in the selected report, using session memory from `/api/retrieve` so
+follow-ups like "summarize her report" work without re-asking. Every answer
+includes evidence citations.
+
 ## Production considerations
 
 - **Data**: JSON files work for a PoC. Production would use PostgreSQL

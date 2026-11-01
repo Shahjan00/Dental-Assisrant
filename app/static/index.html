@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dental Assistant Demo</title>
+<style>
+body { font-family: sans-serif; max-width: 700px; margin: 40px auto; padding: 0 20px; }
+section { border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; border-radius: 8px; }
+input, textarea { width: 100%; padding: 8px; margin: 8px 0; box-sizing: border-box; }
+button { padding: 10px 20px; cursor: pointer; }
+pre { background: #f4f4f4; padding: 12px; overflow-x: auto; font-size: 13px; }
+h2 { margin-top: 0; }
+</style>
+</head>
+<body>
+<h1>Dental Assistant Demo</h1>
+
+<section>
+<h2>1. Find a report</h2>
+<input id="q" placeholder="Try: Open Priya Sharma's latest OPG report">
+<button onclick="retrieve()">Search</button>
+<pre id="r1">Results appear here...</pre>
+</section>
+
+<section>
+<h2>2. Dictation to draft</h2>
+<textarea id="t" rows="3" placeholder="Try: Lower right third molar (48) is horizontally impacted"></textarea>
+<button onclick="dictate()">Convert</button>
+<pre id="r2">Results appear here...</pre>
+</section>
+
+<section>
+<h2>3. Follow-up chat</h2>
+<input id="c" placeholder="Try: Summarize her report">
+<button onclick="chat()">Ask</button>
+<pre id="r3">Results appear here...</pre>
+<p><small>Uses the session from step 1. Do step 1 first.</small></p>
+</section>
+
+<script>
+let sid = null;
+
+async function retrieve() {
+  const q = document.getElementById("q").value;
+  const r = await fetch("/api/retrieve", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({query: q})
+  });
+  const d = await r.json();
+  sid = d.session_id;
+  document.getElementById("r1").textContent = JSON.stringify(d, null, 2);
+}
+
+async function dictate() {
+  const t = document.getElementById("t").value;
+  const r = await fetch("/api/dictate", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({transcript: t})
+  });
+  const d = await r.json();
+  document.getElementById("r2").textContent = JSON.stringify(d, null, 2);
+}
+
+async function chat() {
+  const m = document.getElementById("c").value;
+  const r = await fetch("/api/chat", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({message: m, session_id: sid})
+  });
+  const d = await r.json();
+  document.getElementById("r3").textContent = JSON.stringify(d, null, 2);
+}
+</script>
+</body>
+</html>

@@ -1,11 +1,26 @@
+import os
 import uuid
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from app.models import RetrieveRequest, RetrieveResponse, DictateRequest, DictationResult, ChatRequest, ChatResponse
 from app.services import retrieval, dictation, conversation
 from app.llm.provider import get_llm
 
 app = FastAPI(title="Dental Assistant")
 llm = get_llm()
+
+static_dir = os.path.join(os.path.dirname(__file__), "static")
+if os.path.isdir(static_dir):
+    app.mount("/static", StaticFiles(directory=static_dir), name="static")
+
+
+@app.get("/")
+def home():
+    idx = os.path.join(static_dir, "index.html")
+    if os.path.exists(idx):
+        return FileResponse(idx)
+    return {"message": "Dental Assistant API. See /docs for endpoints."}
 
 
 @app.get("/health")

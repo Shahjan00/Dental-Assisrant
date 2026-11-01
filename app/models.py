@@ -35,6 +35,7 @@ class RetrieveResponse(BaseModel):
     report: Optional[Report] = None
     message: str
     evidence: List[str] = []
+    fallback_used: bool = False
 
 
 class DictateRequest(BaseModel):
@@ -55,6 +56,7 @@ class DictationResult(BaseModel):
     draft_report: str
     uncertainty_notes: List[str] = []
     clinician_review_required: bool = True
+    fallback_used: bool = False
 
 
 class ChatRequest(BaseModel):
@@ -66,3 +68,4 @@ class ChatResponse(BaseModel):
     reply: str
     evidence: List[str] = []
     session_id: str
+    fallback_used: bool = False
